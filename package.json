@@ -42,6 +42,9 @@
     "lodash": "^4.17.15",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-player": "^2.6.0"
+    "react-player": "^2.6.0",
+    "react-player-controls": "^1.1.0",
+    "react-bootstrap": "^1.0.1",
+    "bootstrap": "^4.4.1"
   }
 }

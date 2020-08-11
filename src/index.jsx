@@ -1,7 +1,7 @@
 // import 'bootstrap/dist/js/bootstrap.bundle';
 import ReactDOM from 'react-dom';
 import React from 'react';
-import App from './App.jsx';
+import App from './components/App.jsx';
 
 ReactDOM.render(
   <App />,
