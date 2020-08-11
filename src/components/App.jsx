@@ -1,10 +1,6 @@
 import React from 'react';
-import ReactPlayer from 'react-player';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Nav } from 'react-bootstrap';
-
-import { FormattedTime, PlayerIcon } from 'react-player-controls';
-// import Playlist from './Playlist.jsx';
+import AudioPlayer from './AudioPlayer.jsx';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -19,51 +15,10 @@ export default class App extends React.Component {
   render() {
     return (
       <>
-        <div className="container justify-content-center">{/* <ReactPlayer url='https://www.youtube.com/watch?v=ysz5S6PUM-U' /> */}
-        <ReactPlayer url='../public/Naprosilas__kiska.mp4' 
-        // {/* className='react-player'
-        // width='50%'
-        // height='50%'
-        // // url={url}
-        // // pip={pip}
-        // playing={false} */}
-         />
-         <Nav activeKey="/home">
-    <Nav.Item>
-      {/* <Nav.Link href="/home">Active</Nav.Link> */}
-      <PlayerIcon.Previous width={32} height={32} style={{ marginRight: 32 }} />
-    </Nav.Item>
-    <Nav.Item>
-    <PlayerIcon.Play width={32} height={32} style={{ marginRight: 32 }}/>
-      {/* <Nav.Link eventKey="link-1">Link</Nav.Link> */}
-    </Nav.Item>
-    <Nav.Item>
-      {/* <Nav.Link eventKey="link-2">Link</Nav.Link> */}
-      <PlayerIcon.Next width={32} height={32} style={{ marginRight: 32 }} />
-    </Nav.Item>
-    <Nav.Item>
-      {/* <Nav.Link eventKey="disabled" disabled>
-        Disabled
-      </Nav.Link> */}
-      <PlayerIcon.SoundOn width={32} height={32} style={{ marginRight: 32 }} />
-    </Nav.Item>
-  </Nav>
-         </div>
-        
-         
-         <FormattedTime
-            numSeconds={100}
-          />
-          {/* <PlayerIcon.Play width={32} height={32} style={{ marginRight: 32 }} />
-<PlayerIcon.Pause width={32} height={32} style={{ marginRight: 32 }} />
-
-<PlayerIcon.Next width={32} height={32} style={{ marginRight: 32 }} />
-<PlayerIcon.SoundOn width={32} height={32} style={{ marginRight: 32 }} />
-<PlayerIcon.SoundOff width={32} height={32} style={{ marginRight: 32 }} />
- <Playlist /> */}
+        <AudioPlayer />
       </>
     );
-  }
+    }
 }
 
 // import axios from 'axios';
