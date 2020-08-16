@@ -1,24 +1,82 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import AudioPlayer from './AudioPlayer.jsx';
+import playlist from '../playlist';
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // currentTrack: {},
-      volume: 0,
-      loop: false,
+      // currentTrack: playlist[1],
+      currentTrackNumber: 0,
+      playing: false,
+      volume: 0.5,
+      muted: false,
+      tracks: playlist,
+      // duration: 0,
+      // loop: false,
     };
   }
 
+  handlePlayPause = () => {
+    const { playing } = this.state;
+    this.setState({ playing: !playing });
+  }
+
+  handleMuteAction = () => {
+    const { muted } = this.state;
+    this.setState({ muted: !muted });
+  }
+
+  handleNextTrackAction = () => {
+    const { currentTrackNumber, tracks } = this.state;
+    if (currentTrackNumber === (tracks.length - 1)) {
+      this.setState({ currentTrackNumber: 0 });
+    } else {
+      this.setState({ currentTrackNumber: currentTrackNumber + 1 });
+    }
+  }
+
+  handlePrevTrackAction = () => {
+    const { currentTrackNumber, tracks } = this.state;
+    if (currentTrackNumber === 0) {
+      this.setState({ currentTrackNumber: tracks.length - 1 });
+    } else {
+      this.setState({ currentTrackNumber: currentTrackNumber - 1 });
+    }
+  }
+
+  handleDuration = (duration) => {
+    // console.log('onDuration', duration);
+    this.setState({ duration });
+  }
+
   render() {
+    const {
+      playing,
+      volume,
+      muted,
+      currentTrackNumber,
+      tracks,
+      duration,
+    } = this.state;
     return (
       <>
-        <AudioPlayer />
+        <AudioPlayer
+         playing={playing}
+         volume={volume}
+         muted={muted}
+         onPlayPauseAction={this.handlePlayPause}
+         onMuteAction={this.handleMuteAction}
+         onNextTrackAction={this.handleNextTrackAction}
+         onPrevTrackAction={this.handlePrevTrackAction}
+         currentTrackNumber={currentTrackNumber}
+         tracks={tracks}
+         duration={duration}
+         onDuration={this.handleDuration} />
       </>
     );
-    }
+  }
 }
 
 // import axios from 'axios';
