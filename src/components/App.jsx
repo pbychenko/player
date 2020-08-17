@@ -68,6 +68,16 @@ export default class App extends React.Component {
     this.setState({ played: parseFloat(e.target.value) });
   }
 
+  handleSeekMouseDown = e => {
+    this.setState({ seeking: true });
+  }
+
+  handleSeekMouseUp = (player) => e => {
+    this.setState({ seeking: false });
+    // this.player.seekTo(parseFloat(e.target.value));
+    player.seekTo(parseFloat(e.target.value));
+  }
+
   render() {
     const {
       playing,
@@ -93,8 +103,11 @@ export default class App extends React.Component {
          currentTrackNumber={currentTrackNumber}
          tracks={tracks}
          duration={duration}
+         played={played}
          onDuration={this.handleDuration}
-         onSeek={this.handleSeekChange}
+         onSeekChange={this.handleSeekChange}
+         onSeekMouseDown={this.handleSeekMouseDown}
+         onSeekMouseUp={this.handleSeekMouseUp}
          onVolumeChange={this.handleVolumeChange} />
       </>
     );
