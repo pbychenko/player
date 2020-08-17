@@ -13,7 +13,7 @@ export default class App extends React.Component {
       volume: 0.5,
       muted: false,
       tracks: playlist,
-      // duration: 0,
+      duration: 0,
       // loop: false,
     };
   }
@@ -51,6 +51,18 @@ export default class App extends React.Component {
     this.setState({ duration });
   }
 
+  handleVolumeChange = (e) => {
+    const { muted } = this.state;
+    const volume = parseFloat(e.target.value);
+    this.setState({ volume });
+    if (volume === 0) {
+      this.setState({ muted: true });
+    }
+    if (volume !== 0 && muted !== false) {
+      this.setState({ muted: false });
+    }
+  }
+
   render() {
     const {
       playing,
@@ -73,7 +85,8 @@ export default class App extends React.Component {
          currentTrackNumber={currentTrackNumber}
          tracks={tracks}
          duration={duration}
-         onDuration={this.handleDuration} />
+         onDuration={this.handleDuration}
+         onVolumeChange={this.handleVolumeChange} />
       </>
     );
   }
