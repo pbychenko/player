@@ -14,6 +14,7 @@ export default class App extends React.Component {
       muted: false,
       tracks: playlist,
       duration: 0,
+      played: 0,
       // loop: false,
     };
   }
@@ -63,6 +64,10 @@ export default class App extends React.Component {
     }
   }
 
+  handleSeekChange = (e) => {
+    this.setState({ played: parseFloat(e.target.value) });
+  }
+
   render() {
     const {
       playing,
@@ -71,7 +76,10 @@ export default class App extends React.Component {
       currentTrackNumber,
       tracks,
       duration,
+      played,
     } = this.state;
+    // console.log(duration, played);
+  
     return (
       <>
         <AudioPlayer
@@ -86,6 +94,7 @@ export default class App extends React.Component {
          tracks={tracks}
          duration={duration}
          onDuration={this.handleDuration}
+         onSeek={this.handleSeekChange}
          onVolumeChange={this.handleVolumeChange} />
       </>
     );

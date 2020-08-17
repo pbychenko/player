@@ -15,11 +15,11 @@ const AudioPlayer = (props) => {
     onNextTrackAction,
     onPrevTrackAction,
     tracks,
-    // duration,
+    duration,
     onDuration,
     onVolumeChange,
   } = props;
-  console.log(volume);
+  console.log(duration);
 
   return (
     <>
@@ -33,6 +33,7 @@ const AudioPlayer = (props) => {
         pip={true}
         muted={muted}
         onDuration={onDuration}
+        onSeek={e => console.log('onSeek', e)}
         />
         <Nav activeKey="/home">
           <Nav.Item onClick={onPrevTrackAction}>
@@ -53,6 +54,9 @@ const AudioPlayer = (props) => {
             </div>
           </Nav.Item>
         </Nav>
+        {/* <div className="container justify-content-center">
+          <input type='range' min={0} max={duration} step='any' value={played} onChange={onVolumeChange}/>
+        </div> */}
       </div>
       </>
   );
