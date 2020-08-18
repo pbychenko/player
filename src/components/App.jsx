@@ -76,7 +76,23 @@ export default class App extends React.Component {
     this.setState({ seeking: false });
     // this.player.seekTo(parseFloat(e.target.value));
     player.seekTo(parseFloat(e.target.value));
+    // console.log(player.seekTo(parseFloat(e.target.value)));
   }
+
+  handleProgress = state => {
+    // console.log('onProgress', state)
+    // We only want to update time slider if we are not currently seeking
+    if (!this.state.seeking) {
+      this.setState(state)
+    }
+  }
+
+  // handleMouseHower = (e) => {
+  //   console.log(e);
+  //   // if (!this.state.seeking) {
+  //   //   this.setState(state)
+  //   // }
+  // }
 
   render() {
     const {
@@ -108,7 +124,10 @@ export default class App extends React.Component {
          onSeekChange={this.handleSeekChange}
          onSeekMouseDown={this.handleSeekMouseDown}
          onSeekMouseUp={this.handleSeekMouseUp}
-         onVolumeChange={this.handleVolumeChange} />
+         onVolumeChange={this.handleVolumeChange}
+         onProgressChange={this.handleProgress}
+        //  onHover={this.handleMouseHower}
+       />
       </>
     );
   }

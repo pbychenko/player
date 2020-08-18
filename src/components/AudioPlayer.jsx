@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactPlayer from 'react-player';
-import { Nav } from 'react-bootstrap';
+import { Nav, ProgressBar  } from 'react-bootstrap';
 import { PlayerIcon } from 'react-player-controls';
 // import VolumeSlider from './VolumeSlider.jsx';
 
@@ -28,8 +28,10 @@ class AudioPlayer extends React.Component {
       onSeekMouseDown,
       onSeekMouseUp,
       played,
+      onProgressChange,
+      // onHover
     } = this.props;
-    console.log(duration);
+    // console.log(duration);
     return (
       <>
       <div className="container justify-content-center">  {/* <ReactPlayer url='https://www.youtube.com/watch?v=ysz5S6PUM-U' /> */}
@@ -43,7 +45,8 @@ class AudioPlayer extends React.Component {
           muted={muted}
           onDuration={onDuration}
           ref={this.ref}
-          // onSeekChange={e => console.log('onSeek', e)}
+          onProgress={onProgressChange}
+          onSeek={e => console.log('onSeek', e)}
           />
           <Nav activeKey="/home">
             <Nav.Item onClick={onPrevTrackAction}>
@@ -66,7 +69,9 @@ class AudioPlayer extends React.Component {
           </Nav>
           <div className="container justify-content-center">
             <input type='range' min={0} max={1} step='any' value={played} onChange={onSeekChange}
-            onMouseDown={onSeekMouseDown} onMouseUp={onSeekMouseUp(this.player)}/>
+            onMouseDown={onSeekMouseDown} onMouseUp={onSeekMouseUp(this.player)}
+            // onMouseMove ={onHover}
+              />
           </div>
         </div>
         </>
