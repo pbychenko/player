@@ -1,32 +1,50 @@
-// import React from 'react';
-// import playlist from '../playlist';
-// import '../../public/main.scss';
+import React from 'react';
+import { Table } from 'react-bootstrap';
 
-// const Playlist = () => {
-//   const tracks = playlist;
-//   // render() {
-//     // const { tracks, currentTrack } = this.props
-//     return (
-//       <aside className="media-playlist">
-//         <header className="media-playlist-header">
-//           <h3 className="media-playlist-title">Playlist</h3>
-//         </header>
-//         <ul className="media-playlist-tracks">
-//           {tracks.map(track => (
-//             <li
-//               // key={track.label}
-//               className={`media-playlist-track`} //${
-//                 // track === currentTrack ? 'is-active' : ''
-//               // }`}
-//               // onClick={this._handleTrackClick.bind(this, track)}
-//             >
-//               {track.label}
-//             </li>
-//           ))}
-//         </ul>
-//       </aside>
-//     );
-//   // }
-// };
+// const AudioPlayer = (props) => {
+class Playlist extends React.Component {
+  // ref = player => {
+  //   this.player = player;
+  // }
 
-// export default Playlist;
+  render() {
+    const {
+      // playing,
+      // volume,
+      // muted,
+      // onPlayPauseAction,
+      // onMuteAction,
+      // currentTrackNumber,
+      // onNextTrackAction,
+      // onPrevTrackAction,
+      tracks,
+      // duration,
+      // onDuration,
+      // onVolumeChange,
+      // onSeekChange,
+      // onSeekMouseDown,
+      // onSeekMouseUp,
+      // played,
+      // onProgressChange,
+      // onHover
+    } = this.props;
+    // console.log(tracks);
+    return (
+      <Table striped bordered hover variant="dark">
+  {/* <thead>
+    <tr>
+      <th>#</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Username</th>
+    </tr>
+  </thead> */}
+  <tbody>
+    {tracks.map((track) => (<tr key={track.id}><td>{track.name}</td></tr>))}
+  </tbody>
+</Table>
+    );
+  }
+}
+
+export default Playlist;

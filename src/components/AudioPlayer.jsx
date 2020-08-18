@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactPlayer from 'react-player';
-import { Nav, ProgressBar  } from 'react-bootstrap';
+import { Nav } from 'react-bootstrap';
 import { PlayerIcon, FormattedTime } from 'react-player-controls';
-// import VolumeSlider from './VolumeSlider.jsx';
+
 
 // const AudioPlayer = (props) => {
 class AudioPlayer extends React.Component {

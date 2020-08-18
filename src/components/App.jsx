@@ -1,7 +1,14 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Table } from 'react-bootstrap';
 import AudioPlayer from './AudioPlayer.jsx';
 import playlist from '../playlist';
+// import Playlist from './Playlist.jsx';
+
+const centerStyle = {
+  'border-color': 'red',
+  'border-style': 'solid',
+};
 
 export default class App extends React.Component {
   constructor(props) {
@@ -83,8 +90,12 @@ export default class App extends React.Component {
     // console.log('onProgress', state)
     // We only want to update time slider if we are not currently seeking
     if (!this.state.seeking) {
-      this.setState(state)
+      this.setState(state);
     }
+  }
+
+  handleTrackSelect = (id) => () => {
+    this.setState({ currentTrackNumber: id });
   }
 
   // handleMouseHower = (e) => {
@@ -128,6 +139,20 @@ export default class App extends React.Component {
          onProgressChange={this.handleProgress}
         //  onHover={this.handleMouseHower}
        />
+       {/* <Playlist tracks={tracks} onClickAction={this.handleTrackSelect(el.id)}/>; */}
+       <Table striped bordered hover variant="dark">
+  {/* <thead>
+    <tr>
+      <th>#</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Username</th>
+    </tr>
+  </thead> */}
+  <tbody>
+    {tracks.map((track) => (<tr key={track.id} onClick={this.handleTrackSelect(track.id)} style={track.id ===currentTrackNumber ? centerStyle : null}><td>{track.name}</td></tr>))}
+  </tbody>
+</Table>
       </>
     );
   }
