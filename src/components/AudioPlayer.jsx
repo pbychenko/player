@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactPlayer from 'react-player';
 import { Nav, ProgressBar  } from 'react-bootstrap';
-import { PlayerIcon } from 'react-player-controls';
+import { PlayerIcon, FormattedTime } from 'react-player-controls';
 // import VolumeSlider from './VolumeSlider.jsx';
 
 // const AudioPlayer = (props) => {
@@ -31,7 +31,7 @@ class AudioPlayer extends React.Component {
       onProgressChange,
       // onHover
     } = this.props;
-    // console.log(duration);
+    // console.log(played*10000));
     return (
       <>
       <div className="container justify-content-center">  {/* <ReactPlayer url='https://www.youtube.com/watch?v=ysz5S6PUM-U' /> */}
@@ -73,6 +73,9 @@ class AudioPlayer extends React.Component {
             // onMouseMove ={onHover}
               />
           </div>
+          <FormattedTime
+            numSeconds={duration * played}
+          />
         </div>
         </>
     );
