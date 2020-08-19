@@ -1,8 +1,9 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Table } from 'react-bootstrap';
+import { Table, Col, Image } from 'react-bootstrap';
 import AudioPlayer from './AudioPlayer.jsx';
 import playlist from '../playlist';
+// import res from '../../public/Sa'
 // import Playlist from './Playlist.jsx';
 
 const centerStyle = {
@@ -86,7 +87,7 @@ export default class App extends React.Component {
     // console.log(player.seekTo(parseFloat(e.target.value)));
   }
 
-  handleProgress = state => {
+  handleProgress = (state) => {
     // console.log('onProgress', state)
     // We only want to update time slider if we are not currently seeking
     if (!this.state.seeking) {
@@ -119,6 +120,9 @@ export default class App extends React.Component {
   
     return (
       <>
+        {/* <Col xs={6} md={4}> */}
+      <Image src={tracks[currentTrackNumber].meta} width="289" height="255" rounded />
+    {/* </Col> */}
         <AudioPlayer
          playing={playing}
          volume={volume}
