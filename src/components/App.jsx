@@ -17,13 +17,14 @@ export default class App extends React.Component {
     this.state = {
       // currentTrack: playlist[1],
       currentTrackNumber: 0,
+      // nextTrackNumber: playlist.length > 1 ? 1 : 0,
       playing: false,
       volume: 0.5,
       muted: false,
       tracks: playlist,
       duration: 0,
       played: 0,
-      // loop: false,
+      loop: false,
     };
   }
 
@@ -99,6 +100,21 @@ export default class App extends React.Component {
     this.setState({ currentTrackNumber: id });
   }
 
+  handleOnEnded	= () => {
+    console.log('test');
+    const { currentTrackNumber, tracks } = this.state;
+    if (currentTrackNumber === (tracks.length - 1)) {
+      this.setState({ currentTrackNumber: 0 });
+    } else {
+      this.setState({ currentTrackNumber: currentTrackNumber + 1 });
+    }
+  }
+
+  handleRepeateAction = () => {
+    const { loop } = this.state;
+    this.setState({ loop: !loop });
+  }
+
   // handleMouseHower = (e) => {
   //   console.log(e);
   //   // if (!this.state.seeking) {
@@ -115,8 +131,10 @@ export default class App extends React.Component {
       tracks,
       duration,
       played,
+      loop,
+      // nextTrackNumber
     } = this.state;
-    // console.log(duration, played);
+    console.log(currentTrackNumber);
   
     return (
       <>
@@ -127,8 +145,10 @@ export default class App extends React.Component {
          playing={playing}
          volume={volume}
          muted={muted}
+         loop={loop}
          onPlayPauseAction={this.handlePlayPause}
          onMuteAction={this.handleMuteAction}
+         onRepeateAction={this.handleRepeateAction}
          onNextTrackAction={this.handleNextTrackAction}
          onPrevTrackAction={this.handlePrevTrackAction}
          currentTrackNumber={currentTrackNumber}
@@ -141,6 +161,7 @@ export default class App extends React.Component {
          onSeekMouseUp={this.handleSeekMouseUp}
          onVolumeChange={this.handleVolumeChange}
          onProgressChange={this.handleProgress}
+         onEnded={this.handleOnEnded}
         //  onHover={this.handleMouseHower}
        />
        {/* <Playlist tracks={tracks} onClickAction={this.handleTrackSelect(el.id)}/>; */}

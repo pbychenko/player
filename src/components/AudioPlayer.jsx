@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactPlayer from 'react-player';
 import { Nav } from 'react-bootstrap';
-import { PlayerIcon, FormattedTime } from 'react-player-controls';
+import { PlayerIcon, FormattedTime, Button } from 'react-player-controls';
 
 
 // const AudioPlayer = (props) => {
@@ -17,6 +17,7 @@ class AudioPlayer extends React.Component {
       muted,
       onPlayPauseAction,
       onMuteAction,
+      onRepeateAction,
       currentTrackNumber,
       onNextTrackAction,
       onPrevTrackAction,
@@ -29,6 +30,8 @@ class AudioPlayer extends React.Component {
       onSeekMouseUp,
       played,
       onProgressChange,
+      onEnded,
+      loop,
       // onHover
     } = this.props;
     // console.log(played*10000));
@@ -43,11 +46,14 @@ class AudioPlayer extends React.Component {
           volume={volume}
           pip={true}
           muted={muted}
+          loop={loop}
           onDuration={onDuration}
+          onEnded={onEnded}
           ref={this.ref}
           onProgress={onProgressChange}
           onSeek={e => console.log('onSeek', e)}
           />
+          <a href={tracks[currentTrackNumber].src} download> Скачать файл</a>
           <Nav activeKey="/home">
             <Nav.Item onClick={onPrevTrackAction}>
               <PlayerIcon.Previous width={32} height={32} style={{ marginRight: 32 }} />
@@ -60,6 +66,9 @@ class AudioPlayer extends React.Component {
             </Nav.Item>
             <Nav.Item onClick={onMuteAction}>
               {!muted ? (<PlayerIcon.SoundOn width={32} height={32} style={{ marginRight: 32 }} />) : (<PlayerIcon.SoundOff width={32} height={32} style={{ marginRight: 32 }} />)}
+            </Nav.Item>
+            <Nav.Item >
+              <Button width={32} height={32} style={loop ? {color: 'red'} : {color: 'green'} } onClick={onRepeateAction}> Repeate </Button>
             </Nav.Item>
             <Nav.Item >
               <div className="container justify-content-center">
