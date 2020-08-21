@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactPlayer from 'react-player';
-import { Nav } from 'react-bootstrap';
+import { Navbar, Nav, Container, Form } from 'react-bootstrap';
 import { PlayerIcon, FormattedTime, Button } from 'react-player-controls';
 
 
@@ -53,8 +53,9 @@ class AudioPlayer extends React.Component {
           onProgress={onProgressChange}
           onSeek={e => console.log('onSeek', e)}
           />
-          <a href={tracks[currentTrackNumber].src} download> Скачать файл</a>
-          <Nav activeKey="/home">
+          {/* <Container> */}
+          <Navbar variant="dark">
+          <Nav className="mr-auto">
             <Nav.Item onClick={onPrevTrackAction}>
               <PlayerIcon.Previous width={32} height={32} style={{ marginRight: 32 }} />
             </Nav.Item>
@@ -68,20 +69,29 @@ class AudioPlayer extends React.Component {
               {!muted ? (<PlayerIcon.SoundOn width={32} height={32} style={{ marginRight: 32 }} />) : (<PlayerIcon.SoundOff width={32} height={32} style={{ marginRight: 32 }} />)}
             </Nav.Item>
             <Nav.Item >
-              <Button width={32} height={32} style={loop ? {color: 'red'} : {color: 'green'} } onClick={onRepeateAction}> Repeate </Button>
-            </Nav.Item>
-            <Nav.Item >
               <div className="container justify-content-center">
-                <input type='range' min={0} max={1} step='any' value={volume} onChange={onVolumeChange}/>
+                <input type='range' min={0} max={1} step='any' value={volume} onChange={onVolumeChange} style={{ marginTop: 12 }} />
               </div>
             </Nav.Item>
+            <Nav.Item >
+              <Button width={32} height={32} style={loop ? {color: 'red'} : {color: 'green'} } onClick={onRepeateAction}> Repeate </Button>
+            </Nav.Item>
+            <Nav.Link href={tracks[currentTrackNumber].src} download>Скачать файл</Nav.Link>
           </Nav>
-          <div className="container justify-content-center">
+          </Navbar>
+          {/* </Container> */}
+          {/* <div className="container justify-content-center">
             <input type='range' min={0} max={1} step='any' value={played} onChange={onSeekChange}
             onMouseDown={onSeekMouseDown} onMouseUp={onSeekMouseUp(this.player)}
             // onMouseMove ={onHover}
               />
-          </div>
+          </div> */}
+          {/* <div className="container"> */}
+           <Form.Control type="range" min={0} max={1} step='any' value={played} onChange={onSeekChange}
+            onMouseDown={onSeekMouseDown} onMouseUp={onSeekMouseUp(this.player)} style={{ marginTop: 32 }}
+            // onMouseMove ={onHover}
+            />
+            {/* </div> */}
           <FormattedTime
             numSeconds={duration * played}
           />

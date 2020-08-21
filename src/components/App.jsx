@@ -1,8 +1,9 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Table, Col, Image } from 'react-bootstrap';
+import { Table, Col, Image, Container,Nav } from 'react-bootstrap';
 import AudioPlayer from './AudioPlayer.jsx';
 import playlist from '../playlist';
+import { PlayerIcon, FormattedTime, Button } from 'react-player-controls';
 // import res from '../../public/Sa'
 // import Playlist from './Playlist.jsx';
 
@@ -137,9 +138,11 @@ export default class App extends React.Component {
     console.log(currentTrackNumber);
   
     return (
-      <>
+      <div className="container">
         {/* <Col xs={6} md={4}> */}
-      <Image src={tracks[currentTrackNumber].meta} width="289" height="255" rounded />
+        {/* <Container> */}
+      <Image src={tracks[currentTrackNumber].meta} rounded fluid width='100%'/>
+      {/* </Container> */}
     {/* </Col> */}
         <AudioPlayer
          playing={playing}
@@ -164,6 +167,29 @@ export default class App extends React.Component {
          onEnded={this.handleOnEnded}
         //  onHover={this.handleMouseHower}
        />
+       {/* <Nav>
+        <Nav.Item onClick={this.handlePrevTrackAction}>
+          <PlayerIcon.Previous width={32} height={32} style={{ marginRight: 32 }} />
+        </Nav.Item>
+        <Nav.Item onClick={this.handlePlayPause}>
+          {playing ? (<PlayerIcon.Pause width={32} height={32} style={{ marginRight: 32 }}/>) : (<PlayerIcon.Play width={32} height={32} style={{ marginRight: 32 }}/>)}
+        </Nav.Item>
+        <Nav.Item onClick={this.handleNextTrackAction}>
+          <PlayerIcon.Next width={32} height={32} style={{ marginRight: 32 }} />
+        </Nav.Item> */}
+        {/* <Nav.Item onClick={onMuteAction}>
+          {!muted ? (<PlayerIcon.SoundOn width={32} height={32} style={{ marginRight: 32 }} />) : (<PlayerIcon.SoundOff width={32} height={32} style={{ marginRight: 32 }} />)}
+        </Nav.Item>
+        <Nav.Item >
+          <div className="container justify-content-center">
+            <input type='range' min={0} max={1} step='any' value={volume} onChange={onVolumeChange}/>
+          </div>
+        </Nav.Item>
+        <Nav.Item >
+          <Button width={32} height={32} style={loop ? {color: 'red'} : {color: 'green'} } onClick={onRepeateAction}> Repeate </Button>
+        </Nav.Item>
+        <Nav.Link href={tracks[currentTrackNumber].src} download>Скачать файл</Nav.Link> */}
+      {/* </Nav> */}
        {/* <Playlist tracks={tracks} onClickAction={this.handleTrackSelect(el.id)}/>; */}
        <Table striped bordered hover variant="dark">
   {/* <thead>
@@ -178,7 +204,7 @@ export default class App extends React.Component {
     {tracks.map((track) => (<tr key={track.id} onClick={this.handleTrackSelect(track.id)} style={track.id ===currentTrackNumber ? centerStyle : null}><td>{track.name}</td></tr>))}
   </tbody>
 </Table>
-      </>
+      </div>
     );
   }
 }
