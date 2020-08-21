@@ -11,4 +11,16 @@ export default [
     name: 'bear',
     meta: '../../public/territory.jpeg',
   },
+  {
+    id: 2,
+    src: '../../public/track3.mp3',
+    name: 'pacific',
+    meta: '../../public/pacific.jpeg',
+  },
+  {
+    id: 3,
+    src: '../../public/track4.mp3',
+    name: 'transformers',
+    meta: '../../public/transformers.jpeg',
+  },
 ];
