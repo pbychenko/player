@@ -1,15 +1,13 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Table, Col, Image, Container,Nav } from 'react-bootstrap';
+import { Table, Image, Container } from 'react-bootstrap';
 import AudioPlayer from './AudioPlayer.jsx';
+// import ControlPanel from './ControlPanel.jsx';
 import playlist from '../playlist';
-import { PlayerIcon, FormattedTime, Button } from 'react-player-controls';
-// import res from '../../public/Sa'
-// import Playlist from './Playlist.jsx';
 
 const centerStyle = {
-  'border-color': 'red',
-  'border-style': 'solid',
+  'borderColor': 'red',
+  'borderStyle': 'solid',
 };
 
 export default class App extends React.Component {
@@ -78,11 +76,11 @@ export default class App extends React.Component {
     this.setState({ played: parseFloat(e.target.value) });
   }
 
-  handleSeekMouseDown = e => {
+  handleSeekMouseDown = () => {
     this.setState({ seeking: true });
   }
 
-  handleSeekMouseUp = (player) => e => {
+  handleSeekMouseUp = (player) => (e) => {
     this.setState({ seeking: false });
     // this.player.seekTo(parseFloat(e.target.value));
     player.seekTo(parseFloat(e.target.value));
@@ -101,7 +99,7 @@ export default class App extends React.Component {
     this.setState({ currentTrackNumber: id });
   }
 
-  handleOnEnded	= () => {
+  handleOnEnded = () => {
     console.log('test');
     const { currentTrackNumber, tracks } = this.state;
     if (currentTrackNumber === (tracks.length - 1)) {
@@ -135,8 +133,7 @@ export default class App extends React.Component {
       loop,
       // nextTrackNumber
     } = this.state;
-    console.log(currentTrackNumber);
-  
+
     return (
       <div className="container">
         {/* <Col xs={6} md={4}> */}
@@ -145,246 +142,33 @@ export default class App extends React.Component {
       {/* </Container> */}
     {/* </Col> */}
         <AudioPlayer
-         playing={playing}
-         volume={volume}
-         muted={muted}
-         loop={loop}
-         onPlayPauseAction={this.handlePlayPause}
-         onMuteAction={this.handleMuteAction}
-         onRepeateAction={this.handleRepeateAction}
-         onNextTrackAction={this.handleNextTrackAction}
-         onPrevTrackAction={this.handlePrevTrackAction}
-         currentTrackNumber={currentTrackNumber}
-         tracks={tracks}
-         duration={duration}
-         played={played}
-         onDuration={this.handleDuration}
-         onSeekChange={this.handleSeekChange}
-         onSeekMouseDown={this.handleSeekMouseDown}
-         onSeekMouseUp={this.handleSeekMouseUp}
-         onVolumeChange={this.handleVolumeChange}
-         onProgressChange={this.handleProgress}
-         onEnded={this.handleOnEnded}
-        //  onHover={this.handleMouseHower}
-       />
-       {/* <Nav>
-        <Nav.Item onClick={this.handlePrevTrackAction}>
-          <PlayerIcon.Previous width={32} height={32} style={{ marginRight: 32 }} />
-        </Nav.Item>
-        <Nav.Item onClick={this.handlePlayPause}>
-          {playing ? (<PlayerIcon.Pause width={32} height={32} style={{ marginRight: 32 }}/>) : (<PlayerIcon.Play width={32} height={32} style={{ marginRight: 32 }}/>)}
-        </Nav.Item>
-        <Nav.Item onClick={this.handleNextTrackAction}>
-          <PlayerIcon.Next width={32} height={32} style={{ marginRight: 32 }} />
-        </Nav.Item> */}
-        {/* <Nav.Item onClick={onMuteAction}>
-          {!muted ? (<PlayerIcon.SoundOn width={32} height={32} style={{ marginRight: 32 }} />) : (<PlayerIcon.SoundOff width={32} height={32} style={{ marginRight: 32 }} />)}
-        </Nav.Item>
-        <Nav.Item >
-          <div className="container justify-content-center">
-            <input type='range' min={0} max={1} step='any' value={volume} onChange={onVolumeChange}/>
-          </div>
-        </Nav.Item>
-        <Nav.Item >
-          <Button width={32} height={32} style={loop ? {color: 'red'} : {color: 'green'} } onClick={onRepeateAction}> Repeate </Button>
-        </Nav.Item>
-        <Nav.Link href={tracks[currentTrackNumber].src} download>Скачать файл</Nav.Link> */}
-      {/* </Nav> */}
-       {/* <Playlist tracks={tracks} onClickAction={this.handleTrackSelect(el.id)}/>; */}
+          playing={playing}
+          volume={volume}
+          muted={muted}
+          loop={loop}
+          currentTrackNumber={currentTrackNumber}
+          tracks={tracks}
+          duration={duration}
+          played={played}
+          onDuration={this.handleDuration}
+          onSeekChange={this.handleSeekChange}
+          onSeekMouseDown={this.handleSeekMouseDown}
+          onSeekMouseUp={this.handleSeekMouseUp}
+          onProgressChange={this.handleProgress}
+          onEnded={this.handleOnEnded}
+          onPlayPauseAction={this.handlePlayPause}
+          onMuteAction={this.handleMuteAction}
+          onRepeateAction={this.handleRepeateAction}
+          onNextTrackAction={this.handleNextTrackAction}
+          onPrevTrackAction={this.handlePrevTrackAction}
+          onVolumeChange={this.handleVolumeChange}
+        />
        <Table striped bordered hover variant="dark">
-  {/* <thead>
-    <tr>
-      <th>#</th>
-      <th>First Name</th>
-      <th>Last Name</th>
-      <th>Username</th>
-    </tr>
-  </thead> */}
-  <tbody>
-    {tracks.map((track) => (<tr key={track.id} onClick={this.handleTrackSelect(track.id)} style={track.id ===currentTrackNumber ? centerStyle : null}><td>{track.name}</td></tr>))}
-  </tbody>
-</Table>
+        <tbody>
+          {tracks.map((track) => (<tr key={track.id} onClick={this.handleTrackSelect(track.id)} style={track.id === currentTrackNumber ? centerStyle : null}><td>{track.name}</td></tr>))}
+        </tbody>
+      </Table>
       </div>
     );
   }
 }
-
-// import axios from 'axios';
-// import { Jumbotron, Spinner, Alert } from 'react-bootstrap';
-// import React from 'react';
-// import Card from './Card.jsx';
-// import MyModal from './MyModal.jsx';
-// import 'bootstrap/dist/css/bootstrap.min.css';
-
-// const baseUrl = 'https://boiling-refuge-66454.herokuapp.com/images';
-
-// export default class App extends React.Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = {
-//       items: [],
-//       activePictureData: null,
-//       requestState: '',
-//       showModal: false,
-//       showErrorBlock: false,
-//       form: {
-//         name: '',
-//         comment: '',
-//         // validCommentsState: 'invalid',
-//       },
-//     };
-//   }
-
-//   async componentDidMount() {
-//     this.setState(() => ({ requestState: 'processing' }));
-//     try {
-//       const res = await axios.get(baseUrl);
-//       this.setState(() => ({ requestState: 'success', items: res.data }));
-//     } catch (error) {
-//       this.setState(() => ({ requestState: 'failed', showErrorBlock: true }));
-//       throw error;
-//     }
-//   }
-
-//   // componentDidMount() {
-//   //   this.setState({ requestState: 'processing' }, () => this.getDataRequest());
-//   // }
-
-//   // getDataRequest = (id) => {
-//   //   const uri = baseUrl + (id ? `/${id}` : '');
-//   //   // Думаю, лучше показать понимание принципиального момента:
-//   //   // setState() работает асинхронно!
-//   //   // В данном случае это не играет роли,
-//   //   // смена requestState произойдет быстрее, чем придет ответ на запрос.
-//   //   this.setState({ requestState: 'processing' }, async () => {
-//   //     try {
-//   //       const res = await axios.get(uri);
-//   //       this.setState({
-//   //         requestState: 'success',
-//   //         ...(!id && { items: res.data }),
-//   //         ...(id && {
-//   //           activePictureData: res.data,
-//   //           showModal: true,
-//   //         }),
-//   //       });
-//   //     } catch (error) {
-//   //       this.setState({ requestState: 'failed', showErrorBlock: true });
-//   //       throw error;
-//   //     }
-//   //   });
-//   // };
-
-//   handleClick = (id) => async () => {
-//     try {
-//       this.setState({ requestState: 'processing' });
-//       const res = await axios.get(`${baseUrl}/${id}`);
-//       this.setState({ requestState: 'success', activePictureData: res.data, showModal: true });
-//     } catch (error) {
-//       this.setState({ requestState: 'failed', showErrorBlock: true });
-//       throw error;
-//     }
-//   }
-
-//   renderPictures = () => {
-//     const { items } = this.state;
-//     return (
-//       items.map((el) => <Card key={el.id} src={el.url} onClickAction={this.handleClick(el.id)}/>)
-//     );
-//   }
-
-//   handleChange = (e) => {
-//     const { name, value } = e.target;
-//     const { form } = this.state;
-//     this.setState({ form: { ...form, [name]: value } });
-//     // console.log(form.name);
-//     // console.log(form.comment);
-    
-//     // if (form.name !== '' && form.comment !== '') {
-//     //   this.setState({ form: { ...form, validCommentsState: 'valid'} });
-//     // } else {
-//     //   this.setState({ form: { ...form, [name]: value, validCommentsState: 'invalid'} });
-//     // }
-//   }
-
-//   handleSubmit = async (e) => {
-//     e.preventDefault();
-//     const { name, comment } = this.state.form;
-//     const { id } = this.state.activePictureData;
-
-//     try {
-//       this.setState({ requestState: 'processing' });
-//       await axios.post(`${baseUrl}/${id}/comments`, { name, comment });
-//       // this.setState({ requestState: 'success', form: { name: '', comment: '', validCommentsState: 'invalid' }, showModal: false });
-//       this.setState({ requestState: 'success', form: { name: '', comment: '' }, showModal: false });
-//     } catch (error) {
-//       this.setState({ requestState: 'failed', showErrorBlock: true });
-//       throw error;
-//     }
-//   };
-
-//   renderModal = () => {
-//     const { showModal, form, activePictureData } = this.state;
-//     // console.log(form.validCommentsState);    
-
-//     if (activePictureData) {
-//       return (
-//       <MyModal show={showModal} data={activePictureData} onFormChange={this.handleChange}
-//        onFormSubmit={this.handleSubmit} formData={form} onHide={this.handleCloseModal} validCommentsState={form.validCommentsState}/>
-//       );
-//     }
-
-//     return null;
-//   }
-
-//   handleCloseModal = () => {
-//     this.setState({ showModal: false, form: { name: '', comment: '' } });
-//   }
-
-//   handleShowModal = () => {
-//     this.setState({ showModal: true });
-//   }
-
-//   render() {
-//     const centerStyle = {
-//       display: 'flex',
-//       justifyContent: 'center',
-//       alignItems: 'center',
-//       minHeight: '100vh',
-//     };
-//     const spinnerSizeStyle = {
-//       width: '13rem',
-//       height: '13rem',
-//     };
-//     const { requestState } = this.state;
-//     // console.log(this.state.form);
-
-//     if (requestState === 'processing') {
-//       return (<div className="text-center" style={centerStyle}><Spinner animation="border" style={spinnerSizeStyle} /></div>);
-//     }
-//     if (requestState === 'success') {
-//       return (
-//         <>
-//         <Jumbotron className="text-center">
-//           <h1>TEST APP</h1>
-//         </Jumbotron>
-//         <div className="container">
-//           <div className="row justify-content-center">
-//             {this.renderPictures()}
-//           </div>
-//           {this.renderModal()}
-//         </div>
-//       </>
-//       );
-//     }
-//     return (
-//       <>
-//         <Jumbotron className="text-center">
-//           <h1>TEST APP</h1>
-//         </Jumbotron>
-//         <Alert variant='info' className="text-center">
-//           Something wrong with newtwork please try later
-//         </Alert>
-//       </>
-//     );
-//   }
-// }

@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactPlayer from 'react-player';
-import { Navbar, Nav, Container, Form } from 'react-bootstrap';
-import { PlayerIcon, FormattedTime, Button } from 'react-player-controls';
+import { Form } from 'react-bootstrap';
+import { FormattedTime } from 'react-player-controls';
+import ControlPanel from './ControlPanel.jsx';
 
 
 // const AudioPlayer = (props) => {
@@ -53,45 +54,26 @@ class AudioPlayer extends React.Component {
           onProgress={onProgressChange}
           onSeek={e => console.log('onSeek', e)}
           />
-          {/* <Container> */}
-          <Navbar variant="dark">
-          <Nav className="mr-auto">
-            <Nav.Item onClick={onPrevTrackAction}>
-              <PlayerIcon.Previous width={32} height={32} style={{ marginRight: 32 }} />
-            </Nav.Item>
-            <Nav.Item onClick={onPlayPauseAction}>
-              {playing ? (<PlayerIcon.Pause width={32} height={32} style={{ marginRight: 32 }}/>) : (<PlayerIcon.Play width={32} height={32} style={{ marginRight: 32 }}/>)}
-            </Nav.Item>
-            <Nav.Item onClick={onNextTrackAction}>
-              <PlayerIcon.Next width={32} height={32} style={{ marginRight: 32 }} />
-            </Nav.Item>
-            <Nav.Item onClick={onMuteAction}>
-              {!muted ? (<PlayerIcon.SoundOn width={32} height={32} style={{ marginRight: 32 }} />) : (<PlayerIcon.SoundOff width={32} height={32} style={{ marginRight: 32 }} />)}
-            </Nav.Item>
-            <Nav.Item >
-              <div className="container justify-content-center">
-                <input type='range' min={0} max={1} step='any' value={volume} onChange={onVolumeChange} style={{ marginTop: 12 }} />
-              </div>
-            </Nav.Item>
-            <Nav.Item >
-              <Button width={32} height={32} style={loop ? {color: 'red'} : {color: 'green'} } onClick={onRepeateAction}> Repeate </Button>
-            </Nav.Item>
-            <Nav.Link href={tracks[currentTrackNumber].src} download>Скачать файл</Nav.Link>
-          </Nav>
-          </Navbar>
-          {/* </Container> */}
-          {/* <div className="container justify-content-center">
-            <input type='range' min={0} max={1} step='any' value={played} onChange={onSeekChange}
-            onMouseDown={onSeekMouseDown} onMouseUp={onSeekMouseUp(this.player)}
-            // onMouseMove ={onHover}
-              />
-          </div> */}
-          {/* <div className="container"> */}
+          <ControlPanel
+            playing={playing}
+            volume={volume}
+            muted={muted}
+            loop={loop}
+            onPlayPauseAction={onPlayPauseAction}
+            onMuteAction={onMuteAction}
+            onRepeateAction={onRepeateAction}
+            onNextTrackAction={onNextTrackAction}
+            onPrevTrackAction={onPrevTrackAction}
+            currentTrackNumber={currentTrackNumber}
+            tracks={tracks}
+            duration={duration}
+            played={played}
+            onVolumeChange={onVolumeChange}
+          />
            <Form.Control type="range" min={0} max={1} step='any' value={played} onChange={onSeekChange}
             onMouseDown={onSeekMouseDown} onMouseUp={onSeekMouseUp(this.player)} style={{ marginTop: 32 }}
             // onMouseMove ={onHover}
             />
-            {/* </div> */}
           <FormattedTime
             numSeconds={duration * played}
           />
