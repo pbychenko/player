@@ -5,8 +5,8 @@ import AudioPlayer from './AudioPlayer.jsx';
 import playlist from '../playlist';
 
 const centerStyle = {
-  'borderColor': 'red',
-  'borderStyle': 'solid',
+  borderColor: 'red',
+  borderStyle: 'solid',
 };
 
 export default class App extends React.Component {
@@ -53,7 +53,6 @@ export default class App extends React.Component {
   }
 
   handleDuration = (duration) => {
-    // console.log('onDuration', duration);
     this.setState({ duration });
   }
 
@@ -79,14 +78,10 @@ export default class App extends React.Component {
 
   handleSeekMouseUp = (player) => (e) => {
     this.setState({ seeking: false });
-    // this.player.seekTo(parseFloat(e.target.value));
     player.seekTo(parseFloat(e.target.value));
-    // console.log(player.seekTo(parseFloat(e.target.value)));
   }
 
   handleProgress = (state) => {
-    // console.log('onProgress', state)
-    // We only want to update time slider if we are not currently seeking
     if (!this.state.seeking) {
       this.setState(state);
     }
@@ -97,7 +92,6 @@ export default class App extends React.Component {
   }
 
   handleOnEnded = () => {
-    console.log('test');
     const { currentTrackNumber, tracks } = this.state;
     if (currentTrackNumber === (tracks.length - 1)) {
       this.setState({ currentTrackNumber: 0 });
@@ -111,13 +105,6 @@ export default class App extends React.Component {
     this.setState({ loop: !loop });
   }
 
-  // handleMouseHower = (e) => {
-  //   console.log(e);
-  //   // if (!this.state.seeking) {
-  //   //   this.setState(state)
-  //   // }
-  // }
-
   render() {
     const {
       playing,
@@ -128,7 +115,6 @@ export default class App extends React.Component {
       duration,
       played,
       loop,
-      // nextTrackNumber
     } = this.state;
 
     return (
@@ -158,7 +144,14 @@ export default class App extends React.Component {
       />
        <Table striped bordered hover variant="dark">
         <tbody>
-          {tracks.map((track) => (<tr key={track.id} onClick={this.handleTrackSelect(track.id)} style={track.id === currentTrackNumber ? centerStyle : null}><td>{track.name}</td></tr>))}
+          {tracks.map((track) => (
+            <tr
+              key={track.id}
+              onClick={this.handleTrackSelect(track.id)}
+              style={track.id === currentTrackNumber ? centerStyle : null}>
+                <td>{track.name}</td>
+            </tr>
+          ))}
         </tbody>
       </Table>
       </div>

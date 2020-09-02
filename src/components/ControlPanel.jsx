@@ -2,6 +2,12 @@ import React from 'react';
 import { Nav } from 'react-bootstrap';
 import { PlayerIcon, Button, FormattedTime } from 'react-player-controls';
 
+const iconStyle = {
+  marginRight: 32,
+  height: 32,
+  width: 32,
+};
+
 const ControlPanel = (props) => {
   const {
     playing,
@@ -17,22 +23,24 @@ const ControlPanel = (props) => {
     onVolumeChange,
     loop,
     duration,
-    played
+    played,
   } = props;
   return (
     <>
     <Nav className="mr-auto">
       <Nav.Item onClick={onPrevTrackAction}>
-        <PlayerIcon.Previous width={32} height={32} style={{ marginRight: 32 }} />
+        <PlayerIcon.Previous style={iconStyle} />
       </Nav.Item>
       <Nav.Item onClick={onPlayPauseAction}>
-        {playing ? (<PlayerIcon.Pause width={32} height={32} style={{ marginRight: 32 }}/>) : (<PlayerIcon.Play width={32} height={32} style={{ marginRight: 32 }}/>)}
+        {playing ? (<PlayerIcon.Pause style={iconStyle} />)
+          : (<PlayerIcon.Play style={iconStyle} />)}
       </Nav.Item>
       <Nav.Item onClick={onNextTrackAction}>
-        <PlayerIcon.Next width={32} height={32} style={{ marginRight: 32 }} />
+        <PlayerIcon.Next style={iconStyle} />
       </Nav.Item>
       <Nav.Item onClick={onMuteAction}>
-        {!muted ? (<PlayerIcon.SoundOn width={32} height={32} style={{ marginRight: 32 }} />) : (<PlayerIcon.SoundOff width={32} height={32} style={{ marginRight: 32 }} />)}
+        {!muted ? (<PlayerIcon.SoundOn width={32} height={32} style={{ marginRight: 32 }} />)
+          : (<PlayerIcon.SoundOff style={iconStyle} />)}
       </Nav.Item>
       <Nav.Item >
         <div className="container justify-content-center">
@@ -40,7 +48,7 @@ const ControlPanel = (props) => {
         </div>
       </Nav.Item>
       <Nav.Item >
-        <Button width={32} height={32} style={loop ? {color: 'red'} : { color: 'green' } } onClick={onRepeateAction}> Repeate </Button>
+        <Button width={32} height={32} style={loop ? { color: 'red' } : { color: 'green' } } onClick={onRepeateAction}> Repeate </Button>
       </Nav.Item>
       <Nav.Link href={tracks[currentTrackNumber].src} download>Скачать файл</Nav.Link>
     </Nav>
@@ -48,7 +56,6 @@ const ControlPanel = (props) => {
       numSeconds={duration * played}
     />
     </>
-    
   );
 };
 

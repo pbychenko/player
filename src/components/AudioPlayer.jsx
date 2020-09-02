@@ -3,10 +3,8 @@ import ReactPlayer from 'react-player';
 import { Form } from 'react-bootstrap';
 import ControlPanel from './ControlPanel.jsx';
 
-
-// const AudioPlayer = (props) => {
 class AudioPlayer extends React.Component {
-  ref = player => {
+  ref = (player) => {
     this.player = player;
   }
 
@@ -35,21 +33,20 @@ class AudioPlayer extends React.Component {
     } = this.props;
     return (
       <>
-      <div className="container justify-content-center">  {/* <ReactPlayer url='https://www.youtube.com/watch?v=ysz5S6PUM-U' /> */}
+      <div className="container justify-content-center">
         <ReactPlayer
           url={tracks[currentTrackNumber].src}
           width='50%'
           height='50%'
           playing={playing}
           volume={volume}
-          pip={true}
           muted={muted}
           loop={loop}
           onDuration={onDuration}
           onEnded={onEnded}
           ref={this.ref}
           onProgress={onProgressChange}
-          onSeek={e => console.log('onSeek', e)}
+          playbackRate={1}
           />
           <ControlPanel
             playing={playing}
@@ -67,9 +64,15 @@ class AudioPlayer extends React.Component {
             played={played}
             onVolumeChange={onVolumeChange}
           />
-           <Form.Control type="range" min={0} max={1} step='any' value={played} onChange={onSeekChange}
-            onMouseDown={onSeekMouseDown} onMouseUp={onSeekMouseUp(this.player)} style={{ marginTop: 32 }}
-            // onMouseMove ={onHover}
+           <Form.Control
+            type="range"
+            min={0} max={1}
+            step='any'
+            value={played}
+            onChange={onSeekChange}
+            onMouseDown={onSeekMouseDown}
+            onMouseUp={onSeekMouseUp(this.player)}
+            style={{ marginTop: 32 }}
             />
         </div>
         </>
