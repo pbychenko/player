@@ -1,6 +1,6 @@
 import React from 'react';
 import { Nav } from 'react-bootstrap';
-import { PlayerIcon, Button } from 'react-player-controls';
+import { PlayerIcon, Button, FormattedTime } from 'react-player-controls';
 
 const ControlPanel = (props) => {
   const {
@@ -16,8 +16,11 @@ const ControlPanel = (props) => {
     tracks,
     onVolumeChange,
     loop,
+    duration,
+    played
   } = props;
   return (
+    <>
     <Nav className="mr-auto">
       <Nav.Item onClick={onPrevTrackAction}>
         <PlayerIcon.Previous width={32} height={32} style={{ marginRight: 32 }} />
@@ -41,6 +44,11 @@ const ControlPanel = (props) => {
       </Nav.Item>
       <Nav.Link href={tracks[currentTrackNumber].src} download>Скачать файл</Nav.Link>
     </Nav>
+    <FormattedTime
+      numSeconds={duration * played}
+    />
+    </>
+    
   );
 };
 

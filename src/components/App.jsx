@@ -1,8 +1,7 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Table, Image, Container } from 'react-bootstrap';
+import { Table, Image } from 'react-bootstrap';
 import AudioPlayer from './AudioPlayer.jsx';
-// import ControlPanel from './ControlPanel.jsx';
 import playlist from '../playlist';
 
 const centerStyle = {
@@ -14,9 +13,7 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // currentTrack: playlist[1],
       currentTrackNumber: 0,
-      // nextTrackNumber: playlist.length > 1 ? 1 : 0,
       playing: false,
       volume: 0.5,
       muted: false,
@@ -136,33 +133,29 @@ export default class App extends React.Component {
 
     return (
       <div className="container">
-        {/* <Col xs={6} md={4}> */}
-        {/* <Container> */}
       <Image src={tracks[currentTrackNumber].meta} rounded fluid width='100%'/>
-      {/* </Container> */}
-    {/* </Col> */}
-        <AudioPlayer
-          playing={playing}
-          volume={volume}
-          muted={muted}
-          loop={loop}
-          currentTrackNumber={currentTrackNumber}
-          tracks={tracks}
-          duration={duration}
-          played={played}
-          onDuration={this.handleDuration}
-          onSeekChange={this.handleSeekChange}
-          onSeekMouseDown={this.handleSeekMouseDown}
-          onSeekMouseUp={this.handleSeekMouseUp}
-          onProgressChange={this.handleProgress}
-          onEnded={this.handleOnEnded}
-          onPlayPauseAction={this.handlePlayPause}
-          onMuteAction={this.handleMuteAction}
-          onRepeateAction={this.handleRepeateAction}
-          onNextTrackAction={this.handleNextTrackAction}
-          onPrevTrackAction={this.handlePrevTrackAction}
-          onVolumeChange={this.handleVolumeChange}
-        />
+      <AudioPlayer
+        playing={playing}
+        volume={volume}
+        muted={muted}
+        loop={loop}
+        currentTrackNumber={currentTrackNumber}
+        tracks={tracks}
+        duration={duration}
+        played={played}
+        onDuration={this.handleDuration}
+        onSeekChange={this.handleSeekChange}
+        onSeekMouseDown={this.handleSeekMouseDown}
+        onSeekMouseUp={this.handleSeekMouseUp}
+        onProgressChange={this.handleProgress}
+        onEnded={this.handleOnEnded}
+        onPlayPauseAction={this.handlePlayPause}
+        onMuteAction={this.handleMuteAction}
+        onRepeateAction={this.handleRepeateAction}
+        onNextTrackAction={this.handleNextTrackAction}
+        onPrevTrackAction={this.handlePrevTrackAction}
+        onVolumeChange={this.handleVolumeChange}
+      />
        <Table striped bordered hover variant="dark">
         <tbody>
           {tracks.map((track) => (<tr key={track.id} onClick={this.handleTrackSelect(track.id)} style={track.id === currentTrackNumber ? centerStyle : null}><td>{track.name}</td></tr>))}

@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactPlayer from 'react-player';
 import { Form } from 'react-bootstrap';
-import { FormattedTime } from 'react-player-controls';
 import ControlPanel from './ControlPanel.jsx';
 
 
@@ -33,9 +32,7 @@ class AudioPlayer extends React.Component {
       onProgressChange,
       onEnded,
       loop,
-      // onHover
     } = this.props;
-    // console.log(played*10000));
     return (
       <>
       <div className="container justify-content-center">  {/* <ReactPlayer url='https://www.youtube.com/watch?v=ysz5S6PUM-U' /> */}
@@ -74,9 +71,6 @@ class AudioPlayer extends React.Component {
             onMouseDown={onSeekMouseDown} onMouseUp={onSeekMouseUp(this.player)} style={{ marginTop: 32 }}
             // onMouseMove ={onHover}
             />
-          <FormattedTime
-            numSeconds={duration * played}
-          />
         </div>
         </>
     );
