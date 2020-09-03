@@ -7,21 +7,21 @@ export default [
   },
   {
     id: 1,
-    src: '../../public/track2.mp3',
-    name: 'bear',
-    meta: '../../public/territory.jpeg',
+    src: '../../public/Saw.mp3',
+    name: 'Saw',
+    meta: '../../public/saw.jpg',
   },
   {
     id: 2,
     src: '../../public/track3.mp3',
     name: 'pacific',
-    meta: '../../public/pacific.jpeg',
+    meta: '../../public/pacific.jpg',
   },
   {
     id: 3,
     src: '../../public/track4.mp3',
     name: 'transformers',
-    meta: '../../public/transformers.jpeg',
+    meta: '../../public/transformers.jpg',
   },
   // {
   //   id: 4,
