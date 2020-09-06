@@ -1,11 +1,16 @@
 import React from 'react';
-import { Nav } from 'react-bootstrap';
-import { PlayerIcon, Button, FormattedTime } from 'react-player-controls';
+import { Nav, Image, Navbar } from 'react-bootstrap';
+import { PlayerIcon } from 'react-player-controls';
 
 const iconStyle = {
-  marginRight: 32,
-  height: 32,
-  width: 32,
+  marginRight: '22',
+  height: '22',
+  width: '22',
+};
+
+const controlStyle = {
+  marginTop: '15px',
+  marginLeft: '-15px',
 };
 
 const ControlPanel = (props) => {
@@ -22,40 +27,46 @@ const ControlPanel = (props) => {
     tracks,
     onVolumeChange,
     loop,
-    duration,
-    played,
   } = props;
   return (
     <>
-    <Nav className="mr-auto">
-      <Nav.Item onClick={onPrevTrackAction}>
-        <PlayerIcon.Previous style={iconStyle} />
-      </Nav.Item>
-      <Nav.Item onClick={onPlayPauseAction}>
-        {playing ? (<PlayerIcon.Pause style={iconStyle} />)
-          : (<PlayerIcon.Play style={iconStyle} />)}
-      </Nav.Item>
-      <Nav.Item onClick={onNextTrackAction}>
-        <PlayerIcon.Next style={iconStyle} />
-      </Nav.Item>
-      <Nav.Item onClick={onMuteAction}>
-        {!muted ? (<PlayerIcon.SoundOn width={32} height={32} style={{ marginRight: 32 }} />)
-          : (<PlayerIcon.SoundOff style={iconStyle} />)}
-      </Nav.Item>
-      <Nav.Item >
-        <div className="container justify-content-center">
-          <input type='range' min={0} max={1} step='any' value={volume} onChange={onVolumeChange} style={{ marginTop: 12 }} />
-        </div>
-      </Nav.Item>
-      <Nav.Item >
-        <Button width={32} height={32} style={loop ? { color: 'red' } : { color: 'green' } } onClick={onRepeateAction}> Repeate </Button>
-      </Nav.Item>
-      <Nav.Link href={tracks[currentTrackNumber].src} download>Скачать файл</Nav.Link>
-    </Nav>
-    <FormattedTime
-      numSeconds={duration * played}
-    />
-    </>
+      <Navbar bg="light">
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="mr-auto" style={controlStyle}>
+            <Nav.Item onClick={onPrevTrackAction}>
+              <PlayerIcon.Previous style={iconStyle} />
+            </Nav.Item>
+            <Nav.Item onClick={onPlayPauseAction}>
+              {playing ? (<PlayerIcon.Pause style={iconStyle} />)
+                : (<PlayerIcon.Play style={iconStyle} />)}
+            </Nav.Item>
+            <Nav.Item onClick={onNextTrackAction}>
+              <PlayerIcon.Next style={iconStyle} />
+            </Nav.Item>
+          </Nav>
+          <Nav style={controlStyle}>
+            <Nav.Item onClick={onMuteAction}>
+              {!muted ? (<PlayerIcon.SoundOn style={iconStyle} />)
+                : (<PlayerIcon.SoundOff style={iconStyle} />)}
+            </Nav.Item>
+            <Nav.Item >
+              <div className="container justify-content-center">
+              {/* <div className="slider-wrapper"> */}
+                <input type='range' min={0} max={1} step='any' value={volume} onChange={onVolumeChange} style={{ marginTop: 5 }} />
+              </div>
+            </Nav.Item>
+            <Nav.Item style={{ marginRight: '22px' }}>
+              <Image src='../../public/resetIcon.jpg' height={24} width={24} onClick={onRepeateAction} style={loop ? { opacity: 1 } : { opacity: 0.5 } } />
+            </Nav.Item>
+            <Nav.Item >
+              <Nav.Link href={tracks[currentTrackNumber].src} download style={{ padding: 0 }}>
+                <Image src='../../public/downloadIcon.jpg' height={24} width={24} />
+              </Nav.Link>
+            </Nav.Item>
+        </Nav>
+      </Navbar.Collapse>
+    </Navbar>
+  </>
   );
 };
 

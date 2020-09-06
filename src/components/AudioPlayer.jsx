@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactPlayer from 'react-player';
 import { Form } from 'react-bootstrap';
+import { FormattedTime } from 'react-player-controls';
 import ControlPanel from './ControlPanel.jsx';
 
 class AudioPlayer extends React.Component {
@@ -60,8 +61,6 @@ class AudioPlayer extends React.Component {
             onPrevTrackAction={onPrevTrackAction}
             currentTrackNumber={currentTrackNumber}
             tracks={tracks}
-            duration={duration}
-            played={played}
             onVolumeChange={onVolumeChange}
           />
            <Form.Control
@@ -73,7 +72,9 @@ class AudioPlayer extends React.Component {
             onMouseDown={onSeekMouseDown}
             onMouseUp={onSeekMouseUp(this.player)}
             style={{ marginTop: 32 }}
+            custom
             />
+            <FormattedTime numSeconds={duration * played} />
         </div>
         </>
     );
