@@ -23,10 +23,11 @@ export default [
     name: 'transformers',
     meta: '../../public/transformers.jpg',
   },
-  // {
-  //   id: 4,
-  //   src: 'https://www.youtube.com/watch?v=ysz5S6PUM-U',
-  //   name: 'youtube video',
-  //   meta: '',
-  // },
+  {
+    id: 4,
+    // src: 'https://www.youtube.com/watch?v=ysz5S6PUM-U',
+    src: 'https://youtu.be/0UkLI5hjX9s',
+    name: 'youtube video',
+    meta: '',
+  },
 ];

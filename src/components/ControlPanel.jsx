@@ -27,6 +27,9 @@ const ControlPanel = (props) => {
     tracks,
     onVolumeChange,
     loop,
+    onMouseEnter,
+    onMouseLeave,
+    volumeRangeShown,
   } = props;
   return (
     <>
@@ -44,16 +47,16 @@ const ControlPanel = (props) => {
               <PlayerIcon.Next style={iconStyle} />
             </Nav.Item>
           </Nav>
-          <Nav style={controlStyle}>
-            <Nav.Item onClick={onMuteAction}>
-              {!muted ? (<PlayerIcon.SoundOn style={iconStyle} />)
-                : (<PlayerIcon.SoundOff style={iconStyle} />)}
-            </Nav.Item>
-            <Nav.Item >
-              <div className="container justify-content-center">
-              {/* <div className="slider-wrapper"> */}
-                <input type='range' min={0} max={1} step='any' value={volume} onChange={onVolumeChange} style={{ marginTop: 5 }} />
+          <Nav style={controlStyle} className='volume' >
+            <Nav.Item onMouseEnter={onMouseEnter}
+            onMouseLeave={onMouseLeave}>
+              {!muted ? (<PlayerIcon.SoundOn style={iconStyle} onClick={onMuteAction} />)
+                : (<PlayerIcon.SoundOff style={iconStyle} onClick={onMuteAction} />)}
+              {volumeRangeShown && (
+              <div className="slider-wrapper">
+                <input type='range' min={0} max={1} step='any' value={volume} onChange={onVolumeChange}  />
               </div>
+            )}
             </Nav.Item>
             <Nav.Item style={{ marginRight: '22px' }}>
               <Image src='../../public/resetIcon.jpg' height={24} width={24} onClick={onRepeateAction} style={loop ? { opacity: 1 } : { opacity: 0.5 } } />

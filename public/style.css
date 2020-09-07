@@ -1,14 +1,12 @@
-/* .container {
-  z-index: 1
-}
-
 .slider-wrapper {
   display: inline-block;
   width: 20px;
   height: 150px;
   padding: 0;
-  /* z-index: 100; */
-/* }
+  position: absolute;
+  right: 95px;
+  top: -150px;
+}
 
 .slider-wrapper input {
   width: 150px;
@@ -16,5 +14,9 @@
   margin: 0;
   transform-origin: 75px 75px;
   transform: rotate(-90deg);
-  z-index: 2;
-} */ 
+} 
+
+.volume {
+  position: relative;
+}
+

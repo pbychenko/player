@@ -20,8 +20,19 @@ export default class App extends React.Component {
       tracks: playlist,
       duration: 0,
       played: 0,
+      loaded: 0,
       loop: false,
+      volumeRangeShown: false
     };
+  }
+
+  load = url => {
+    this.setState({
+      url,
+      played: 0,
+      loaded: 0,
+      pip: false
+    })
   }
 
   handlePlayPause = () => {
@@ -105,6 +116,14 @@ export default class App extends React.Component {
     this.setState({ loop: !loop });
   }
 
+  handleonMouseEnter = () => {
+    this.setState({ volumeRangeShown: true });
+  }
+  
+  handleonMouseLeave = () => {
+    this.setState({ volumeRangeShown: false });
+  }
+
   render() {
     const {
       playing,
@@ -115,6 +134,8 @@ export default class App extends React.Component {
       duration,
       played,
       loop,
+      volumeRangeShown,
+      loaded,
     } = this.state;
 
     return (
@@ -129,6 +150,7 @@ export default class App extends React.Component {
         tracks={tracks}
         duration={duration}
         played={played}
+        loaded={loaded}
         onDuration={this.handleDuration}
         onSeekChange={this.handleSeekChange}
         onSeekMouseDown={this.handleSeekMouseDown}
@@ -141,6 +163,9 @@ export default class App extends React.Component {
         onNextTrackAction={this.handleNextTrackAction}
         onPrevTrackAction={this.handlePrevTrackAction}
         onVolumeChange={this.handleVolumeChange}
+        volumeRangeShown={volumeRangeShown}
+        onMouseEnter={this.handleonMouseEnter}
+        onMouseLeave={this.handleonMouseLeave}
       />
        <Table striped bordered hover variant="dark">
         <tbody>
