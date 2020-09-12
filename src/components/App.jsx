@@ -22,17 +22,17 @@ export default class App extends React.Component {
       played: 0,
       loaded: 0,
       loop: false,
-      volumeRangeShown: false
+      volumeRangeShown: false,
     };
   }
 
-  load = url => {
+  load = (url) => {
     this.setState({
       url,
       played: 0,
       loaded: 0,
-      pip: false
-    })
+      pip: false,
+    });
   }
 
   handlePlayPause = () => {
@@ -119,7 +119,7 @@ export default class App extends React.Component {
   handleonMouseEnter = () => {
     this.setState({ volumeRangeShown: true });
   }
-  
+
   handleonMouseLeave = () => {
     this.setState({ volumeRangeShown: false });
   }

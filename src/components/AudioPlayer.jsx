@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactPlayer from 'react-player';
-import { Form, ProgressBar } from 'react-bootstrap';
+import { Form } from 'react-bootstrap';
 import { FormattedTime } from 'react-player-controls';
 import ControlPanel from './ControlPanel.jsx';
 
@@ -34,7 +34,6 @@ class AudioPlayer extends React.Component {
       onMouseEnter,
       onMouseLeave,
       volumeRangeShown,
-      // loaded,
     } = this.props;
     return (
       <>
@@ -81,7 +80,6 @@ class AudioPlayer extends React.Component {
             style={{ marginTop: 32 }}
             custom
             />
-            {/* <ProgressBar now={loaded * 100} /> */}
             <FormattedTime numSeconds={duration * played} />
         </div>
         </>
